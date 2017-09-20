@@ -1,0 +1,441 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Feedtify | My Groups{% endblock %}
+
+{% block nav %}
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="height: 70%">
+	<ul class="nav flex-column text-center">
+		<li class="nav-item">
+			<a class="nav-link" href="http://localhost:3000/dashboard">HOME</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="http://localhost:3000/myfeeds">MY FEEDS</a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="http://localhost:3000/mygroups">MY GROUPS</a>
+		</li>
+		{% block userCategories %}
+			{% include "../partials/categories.html" %}
+		{% endblock %}
+	</ul>
+	{% block footer %}
+		{% include "../includes/footer.html" %}
+	{% endblock %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row full-width">
+	<div class="col-md-3 full-width">
+		<h3>My groups</h3>
+	</div>
+	<div class="col-md-9 full-width">
+		<button class="btn btn-outline-success my-2 my-sm-0 pull-right" type="button" data-toggle="modal" data-target="#addGroupModal"><i class="fa fa-plus-circle"></i></button>
+	</div>
+</div>
+
+<hr>
+
+<div class="row full-width">
+	<div class="col-md-3 full-width" id="createdColumn">
+		<h4>Created groups</h4>
+		<hr>
+		<div class="g-card" id="g-card-hidden" hidden>
+			<div class="row full-width g-card-info">
+				<div class="col-md-4">
+					<img src="/images/avatar.png" alt="">
+				</div>
+				<div class="col-md-8 full-width">
+					<div class="g-card-name"></div>
+					<div class="g-card-description"></div>
+				</div>
+			</div>
+			<div class="row full-width g-card-footer">
+				<div class="g-card-details">
+					<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> </span>
+					<i class="fa fa-users fa-fw"></i><span class="g-card-users"> </span>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="g-card">
+			<div class="row full-width g-card-info">
+				<div class="col-md-4">
+					<img src="images/avatar.png" alt="">
+				</div>
+				<div class="col-md-8 full-width">
+					<div class="g-card-name">Group name</div>
+					<div class="g-card-description">Group short description</div>
+				</div>
+			</div>
+			<div class="row full-width g-card-footer">
+				<div class="g-card-details">
+					<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+					<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div class="col-md-9 full-width">
+		<h4>Joined groups</h4>
+		<hr>
+		<div class="row full-width" id="joinedColumn">
+			<!-- <div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div>
+			<div class="g-card">
+				<div class="row full-width g-card-info">
+					<div class="col-md-4">
+						<img src="images/avatar.png" alt="">
+					</div>
+					<div class="col-md-8 full-width">
+						<div class="g-card-name">Group name</div>
+						<div class="g-card-description">Group description</div>
+					</div>
+				</div>
+				<div class="row full-width g-card-footer">
+					<div class="g-card-details">
+						<i class="fa fa-user fa-fw"></i><span class="g-card-owner"> Owner name</span>
+						<i class="fa fa-users fa-fw"></i><span class="g-card-owner"> 123</span>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+</div>
+{% endblock %}

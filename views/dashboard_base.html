@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Feedtify{% endblock %}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	{% block css%}	
+		{% include "includes/css.html" %}
+	{% endblock %}
+</head>
+<body>
+	<!-- HEADER -->
+	{% block header %}
+	<header>
+		<nav class="navbar navbar-toggleable-md navbar-light fixed-top">
+			<button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img class="logo" src="/images/logo.png" alt=""></a>
+
+			<div class="collapse navbar-collapse">
+				<a class="navbar-nav mr-auto nav-link header-title" href="#">Feedtify</a>
+				<!-- <form class="form-inline mt-2 mt-md-0">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button">Log-in</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button">Sign Up</button>
+				</form> -->
+				<div class="form-inline user-data">
+					<div class="user-name">
+						<div class="btn-group">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="userNameLoggedIn">{{ user.username }}</a>
+							<ul class="dropdown-menu user-dropmenu" role="button">
+								<li class="dropdown-item" data-toggle="modal" data-target="#addFeedModal"><a href="#">Add new feed</a></li>
+								<!-- <li class="dropdown-item" data-toggle="modal" data-target="#addFeedModal"><a href="#">Add new category</a></li> -->
+								<li class="dropdown-divider"></li>
+								<li class="dropdown-item"><a href="/myfeeds">My feeds</a></li>
+								<li class="dropdown-item"><a href="/mygroups">My groups</a></li>
+								<li class="dropdown-divider"></li>
+								<!-- <li class="dropdown-item"><a href="#">Account</a></li>
+								<li class="dropdown-divider"></li> -->
+								<li class="dropdown-item"><a href="/logout">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="user-avatar">
+						<img src="/images/avatar.png" alt="">
+					</div>
+				</div>
+			</div>
+	    </nav>
+	</header>
+	{% endblock %}
+	<!-- END HEADER -->
+
+	<!-- MODALS -->
+	<form method="post" id="addFeedForm" action="">
+		<div class="modal fade show" id="addFeedModal" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Add new feed</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				<div class="form-group">
+					<label for="feedUrl">URL</label>
+					<input type="text" class="form-control" id="feedUrl" name="feedUrl" placeholder="Enter feed url">
+				</div>
+				<div class="form-group">
+					<label for="feedDomain">Domain</label>
+					<input type="text" readonly="readonly" class="form-control" id="feedDomain" name="feedDomain">
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="feedGroupCheck" class="form-check-input" type="checkbox" name="feedGroupCheck">
+						Add to group
+					</label>
+				</div>
+				<div class="form-group">
+					<select class="form-control" name="feedGroupSelect" id="feedGroupSelect" disabled>
+						{% for group in groups %}
+							{% get 'groupsResult' from 'Groups' using 'find' with {id:group.id} %}
+							{% done %}
+
+							{% for g in groupsResult %}
+							<option value="{{ g.name }}">{{ g.name }}</option>
+							{% endfor %}
+						{% endfor %}
+					</select>
+				</div>
+				<fieldset id="selectCatGroup">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input id="selectCatRadio" class="form-check-input" type="radio" name="feedRadios" value="addFeedModalRadio" checked>
+							Select category
+						</label>
+					</div>
+					<div class="form-group">
+						<select class="form-control" name="feedCategorySelect" id="feedCategorySelect">
+							{% for category in categories %}
+							<option value="{{ category.name }}">{{ category.name }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input id="createCatRadio" class="form-check-input" name="feedRadios" type="radio" value="addFeedModalRadio">
+							Create a new category
+						</label>
+					</div>
+				</fieldset>
+				<fieldset id="createCatGroup" disabled>
+					<div class="form-group">
+						<label for="feedCategory">Category name</label>
+						<input type="text" class="form-control" id="feedCategory" name="feedCategory" placeholder="Enter category name">
+					</div>
+					<div class="form-group">
+						<label for="feedColor">Category color</label>
+						<input type="color" id="feedColor" name="feedColor">
+					</div>
+					<div class="form-group">
+						<label for="feedIcon">Category icon</label>
+						<div class="select2-wrapper">
+							<select id="feedIconsSelect" name="feedIconsSelect" disabled>
+								{% block FAIcons %}
+									{% include "partials/fa-icons.html" %}
+								{% endblock %}
+							</select>
+						</div>
+					</div>
+			      </div>
+				</fieldset>	
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-outline-success" id="addFeedBtn">Add</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
+
+	<form method="post" id="addGroupForm" action="">
+		<div class="modal fade show" id="addGroupModal" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Add group</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				<div class="form-group">
+					<label for="feedUrl">Group name</label>
+					<input type="text" class="form-control" id="groupName" name="groupName" placeholder="Enter group name">
+				</div>
+				<div class="form-group">
+					<label for="feedUrl">Description</label>
+					<input type="text" class="form-control" id="groupDesc" name="groupDesc" placeholder="Enter group description">
+				</div>
+				<div class="form-group">
+						<label for="groupFeedsColor">Feeds color</label>
+						<input type="color" id="groupFeedsColor" name="groupFeedsColor">
+					</div>
+				<div class="form-group">
+						<label for="feedIcon">Feeds icon</label>
+						<div class="select2-wrapper">
+							<select id="groupIconsSelect" name="groupIconsSelect">
+								{% block GFAIcons %}
+									{% include "partials/fa-icons.html" %}
+								{% endblock %}
+							</select>
+						</div>
+					</div>
+			  </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-outline-success" id="addGroupBtn">Add</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
+	
+
+	{% block modals %}{% endblock %}
+	<!-- END MODALS -->
+	
+
+	<!-- MAIN CONTAINER -->
+	<div class="container-fluid full-width">
+		<div class="row full-width">
+			<!-- SIDEBAR -->
+			{% block nav %}{% endblock %}
+			<!-- END SIDEBAR -->
+
+			<!-- CONTENT -->
+			<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+				<div class="content">
+					{% block content %}{% endblock %}
+				</div>
+			</main>
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	<!-- END MAIN CONTAINER -->
+
+	<!-- SCRIPTS -->
+	{% block js %}
+		{% include "includes/js.html" %}
+	{% endblock %}
+	<script type="text/javascript" src="/js/feedtify.js"></script>
+	{% block customjs %}{% endblock %}
+	<script type="text/javascript" src="/js/validation.js"></script>
+
+	<script type="text/javascript">
+		function format(icon) {
+		    var originalOption = icon.element;
+		    var $selection = $("<span><i class='fa " + $(originalOption).data('icon') + "'></i> " + icon.text + "</span>");
+		    
+		    return $selection;
+		}
+
+  		$('#feedIconsSelect').select2({
+  			width: "100%",
+		    templateSelection: format,
+		    templateResult: format
+			});
+			
+			$('#groupIconsSelect').select2({
+  			width: "100%",
+		    templateSelection: format,
+		    templateResult: format
+  		});
+
+	</script>
+</body>
+</html>

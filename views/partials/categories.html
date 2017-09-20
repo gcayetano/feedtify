@@ -1,0 +1,10 @@
+{% block userCategories %}
+<li class="nav-item dropdown">
+	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES</a>
+	<ul class="dropdown-menu sidebar-dropmenu text-center noselect" role="button">
+		{% for category in categories %}
+		<li class="dropdown-item"><!--<i class="fa {{ category.icon }}"></i>--><a href="/category/{{ category.slug }}" data-name="{{ category.name }}" data-slug="{{ category.slug }}">{{ category.name }}</a></li>
+		{% endfor %}
+	</ul>
+</li>
+{% endblock %}

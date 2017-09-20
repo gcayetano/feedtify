@@ -1,0 +1,74 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Feedtify | {{ category }} {% endblock %}
+
+{% block nav %}
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="height: 70%">
+	<ul class="nav flex-column text-center">
+		<li class="nav-item">
+			<a class="nav-link" href="/dashboard">HOME</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/myfeeds">MY FEEDS</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/mygroups">MY GROUPS</a>
+		</li>
+		{% block userCategories %}
+			{% include "../partials/categories.html" %}
+		{% endblock %}
+	</ul>
+	{% block footer %}
+		{% include "../includes/footer.html" %}
+	{% endblock %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row full-width">
+	<div class="col-md-12 full-width">
+		<div class="cat-header">
+			<div class="cat-header-text">
+				<i class="fa"></i> <span></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <hr> -->
+<br>
+
+{% block fCardHidden %}
+	{% include "../partials/f-card-template.html" %}
+{% endblock %}
+
+<div class="row full-width">
+	<div class="col-md-4 full-width">
+		<h4>Unread feeds</h4>
+		<hr>
+
+		<div id="unread-column" class="cat-feed-body">
+			
+		</div>
+	</div>
+	<div class="col-md-4 full-width">
+		<h4>Read later</h4>
+		<hr>
+
+		<div id="readed-column" class="cat-feed-body">
+
+		</div>
+	</div>
+	<div class="col-md-4 full-width">
+		<h4>Favourites</h4>
+		<hr>
+		
+		<div id="fav-column" class="cat-feed-body">
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block customjs %}
+<script type="text/javascript" src="/js/drag_drop.js"></script>
+{% endblock %}

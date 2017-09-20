@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Feedtify{% endblock %}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	{% block css%}	
+		{% include "includes/css.html" %}
+	{% endblock %}
+</head>
+<body>
+	<!-- HEADER -->
+	{% block header %}
+	<header>
+		<nav class="navbar navbar-toggleable-md navbar-light fixed-top">
+			<button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img class="logo" src="/images/logo.png" alt=""></a>
+
+			<div class="collapse navbar-collapse">
+				<a class="navbar-nav mr-auto nav-link header-title" href="http://localhost:3000">Feedtify</a>
+				<form class="form-inline mt-2 mt-md-0">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#loginModal">Log-in</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+				</form>
+			</div>
+	    </nav>
+	</header>
+	{% endblock %}
+	<!-- END HEADER -->
+
+	{% block modals %}{% endblock %}
+
+	<!-- MAIN CONTAINER -->
+	<div class="container-fluid full-width">
+		<!-- CONTENT -->
+		{% block content %}{% endblock %}
+		<!-- END CONTENT -->
+	</div>
+	<!-- END MAIN CONTAINER -->
+
+	<!-- SCRIPTS -->
+	{% block js %}
+		{% include "includes/js.html" %}
+	{% endblock %}
+</body>
+</html>

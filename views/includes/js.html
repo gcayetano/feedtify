@@ -1,0 +1,21 @@
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/tether.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/pnotify.custom.min.js"></script>
+<script type="text/javascript" src="/js/dragula.js"></script>
+<script type="text/javascript">
+//Codigo para que funcione jFeed
+jQuery.browser = {};
+(function () {
+
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
+<script type="text/javascript" src="/js/jquery.jfeed.js"></script>
+<script src="/js/select2.min.js"></script>

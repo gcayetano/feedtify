@@ -1,0 +1,566 @@
+body {
+  padding-top: 76px;
+}
+
+.modal-open {
+	padding-right: 0 !important;
+}
+
+
+/* HEADER */
+
+header form > button:first-child {
+	margin-right: 15px;
+}
+
+.header-title {
+	color: black;
+	font-size: 18px;
+}
+
+.header-title:hover {
+	color: black;
+}
+
+.logo {
+	margin-top: 2px;
+	margin-left: 25px;
+	width: 64px;
+	height: 64px;
+}
+
+.user-data .user-name {
+	margin-right: 15px;
+}
+
+.user-data .user-name a {
+	color: black;
+}
+
+.user-data .user-avatar img {
+	width: 42px;
+	height: 42px;
+}
+
+.user-dropmenu li a:hover {
+	text-decoration: none;
+}
+
+.user-dropmenu li:active, .user-dropmenu li:active a {
+	color: #fff;
+	background-color: #4aa94c;
+}
+
+
+/* HOME */
+
+.home-container {
+	background-color: black;
+}
+
+.home-image {
+	background: url("../images/home-bg.jpg");
+	height: 400px;
+}
+
+.home-title h1 {
+	font-family: "MyriadPro-Bold";
+	font-size: 90px;
+	color: white;
+	color:#FFFFFF;
+
+	text-shadow: 	0 1px 0 #ccc,
+				0 2px 0 #c9c9c9,
+				0 3px 0 #bbb,
+				0 4px 0 #b9b9b9,
+				0 5px 0 #aaa,
+				0 6px 1px rgba(0,0,0,.1),
+				0 0 5px rgba(0,0,0,.1),
+				0 1px 3px rgba(0,0,0,.3),
+				0 3px 5px rgba(0,0,0,.2),
+				0 5px 10px rgba(0,0,0,.25),
+				0 10px 10px rgba(0,0,0,.2),
+				0 20px 20px rgba(0,0,0,.15);
+
+}
+
+.home-info {
+	margin-left: 150px;
+	margin-right: 90px;
+	margin-top: 30px;
+}
+
+.home-footer {
+	background-color: #323232;
+	color: gray;
+	height: 60px;
+}
+
+.home-footer span {
+	font-family: "MyriadPro-Regular";
+	font-size: 14px;
+}
+
+
+/* INFO CARDS */
+
+.i-card {
+	width: 320px;
+	height: 250px;
+	border: 1px solid #b3aeae;
+	border-radius: 15px;
+	margin-left: 50px;
+}
+
+.i-card-circle {
+    background-color: #4aa94c;
+    width:0;
+    border-radius:50px;
+    width:80px;
+    height:80px;
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.i-card-circle > .fa {
+	color: white;
+    line-height:80px;
+    z-index:10;
+}
+
+.i-card-title h4 {
+	margin-top: 10px ;
+	margin-left: 15px;
+}
+
+.i-card-description p {
+	margin-top: 10px;
+	margin-left: 15px;
+}
+
+/* SIDEBAR */
+
+.navbar {
+	padding: 0;
+	padding-right: 50px;
+	background-color: #fff;
+	border-bottom: 1px solid #b3aeae;
+}
+
+.sidebar::-webkit-scrollbar { 
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.sidebar {
+  position: fixed;
+  top: 77px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+  border-right: 1px solid #b3aeae;
+
+  -ms-overflow-style: none;
+}
+
+.sidebar {
+  padding: 0;
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+  width: 100%;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.sidebar .nav-link {
+  border-radius: 0;
+}
+
+.sidebar > ul {
+	margin-top: 0;
+}
+
+.sidebar > ul > li > a {
+    color: #7e7e7e;
+    border-bottom: 1px solid #b3aeae;
+}
+
+.sidebar > ul > li:not(.active) > a:hover {
+    color: #7e7e7e;
+    background-color: #f7f6f6;
+    border-bottom: 1px solid #b3aeae;
+    text-decoration: none;
+}
+
+.sidebar > ul > .active > a {
+    color: #fff;
+    background-color: #4aa94c;
+}
+
+.sidebar-dropmenu {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+}
+
+.sidebar-dropmenu > li {
+	position: relative;
+    display: block;
+    padding-right: 0;
+    padding-left: 0;
+    background-color: #f2efef;
+	border-bottom: 1px solid #b3aeae;
+    text-decoration: none;
+}
+
+.sidebar-dropmenu > li > a {
+	color: #7e7e7e;
+	position: relative;
+    padding: 5px 15px;
+    text-decoration: none;
+}
+
+.sidebar-dropmenu > li:active, .sidebar-dropmenu > li.active {
+	color: #fff;
+    background-color: #4aa94c;
+}
+
+.sidebar-dropmenu > li:active a, .sidebar-dropmenu > li.active a {
+	color: #fff;
+}
+
+
+/* FOOTER */
+
+nav > footer > div > .row {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.footer {
+	background-color: #323232;
+	border-right: 1px solid #b3aeae;
+	height: 150px; /* 150px */
+	width: 254px;
+}
+
+.footer-header {
+	margin-top: 20px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+}
+
+.footer-social {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.footer-social a {
+	color: #8f8f8f;
+	font-size: 24px;
+}
+
+.footer-copyright {
+	/*margin-top: 35px;*/
+	margin-top: 25px;
+	color: #7e7e7e;
+	width: 100%;
+	font-size: 12px;
+	bottom: 0;
+	position: relative;
+}
+
+
+/* CONTENT */
+
+@font-face {
+    font-family: "MyriadPro-Regular";
+    src:url("../fonts/Myriad-Pro.ttf");
+}
+
+@font-face {
+    font-family: "MyriadPro-Bold";
+    src:url("../fonts/Myriad-Pro-Bold.ttf");
+}
+
+.content {
+	/*overflow: auto;*/
+	padding: 30px;
+}
+
+.content > h3 {
+	font-family: "MyriadPro-Regular";
+}
+
+.content .row {
+	margin: 0 auto;
+}
+
+/* FEEDS CARDS */
+
+.f-card {
+	width: 360px;
+	height: 290px;
+	margin: 15px;
+	/*margin-bottom: 20px;*/
+	border: 1px solid #b3aeae;
+	border-radius: 15px;
+}
+
+.f-card-header {
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	/* background-color: #7f63e6; */
+	color: white;
+	height: 40px;
+}
+
+.f-card-header-text {
+	font-family: "MyriadPro-Regular";
+	padding-left: 25px !important;
+	padding-top: 7px !important;
+	font-size: 17px;
+	vertical-align: middle;
+}
+
+.f-card-image {
+	width: 100%;
+	background-color: gray;
+	height: 100px;
+}
+
+.f-card-image img {
+	width: 100%;
+	max-height: 100px;
+}
+
+.f-card-content {
+	font-family: "MyriadPro-Regular";
+	padding: 5px !important;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.f-card-title {
+	font-family: "MyriadPro-Bold";
+	width: 330px;
+
+}
+
+.f-card-title h6 {
+	/*white-space: nowrap;	*/
+  	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.f-card-title h6 > a {
+	color: black;
+}
+
+.f-card-description {
+	font-size: 13px;
+	max-height: 75px;
+}
+
+
+/* GROUP CARDS */
+
+.g-card {
+	font-family: "MyriadPro-Regular";
+	width: 100%;
+	max-width: 279px;
+	/*margin-bottom: 20px;*/
+	border: 1px solid #b3aeae;
+	border-radius: 5px;
+
+
+	margin-right: 15px !important;
+	margin-bottom: 15px !important;
+}
+
+.g-card-info {
+	padding: 5px !important;
+}
+
+.g-card-info img {
+	width: 60px;
+	height: 60px;
+}
+
+.g-card-name {
+	font-family: "MyriadPro-Bold";
+	font-size: 18px;
+}
+
+.g-card-description {
+	font-size: 13px;
+}
+
+.g-card-footer {
+	background-color: #e8e7e7;
+	margin-top: 5px !important;
+	border-top: 1px solid #b3aeae;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	height: 30px;
+}
+
+.g-card-details {
+	margin-left: 15px !important;
+}
+
+.g-card-details span{
+	font-size: 13px;
+	margin-right: 10px;
+}
+
+/* GROUP PAGE */
+
+.g-logo img {
+	height: 90px;
+	width: 90px;
+}
+
+.g-info {
+	font-family: "MyriadPro-Regular";
+	margin-left: 30px;
+}
+
+.g-name {
+	font-family: "MyriadPro-Bold";
+	font-size: 20px;
+}
+
+.g-description {
+	font-size: 14px;
+}
+
+.g-details {
+	margin-top: 10px !important;
+}
+
+.g-details span {
+	font-size: 13px;
+	margin-right: 10px;
+}
+
+/* CATEGORY */
+
+.cat-header {
+	width: 100%;
+	height: 50px;
+	border: 1px solid #b3aeae;
+	border-radius: 10px;
+	/* background-color: #7f63e6; */
+	color: #fff;
+}
+
+.cat-header.homecolor {
+	background-color: #4aa94c;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.cat-header-text {
+	font-family: "MyriadPro-Regular";
+	margin-left: 30px;
+	margin-top: 13px;
+}
+
+.cat-header-text i {
+	font-size: 20px;
+}
+
+.cat-feed-body {
+	min-height: 100vh;
+	overflow: auto;
+}
+
+#unread-column, #readed-column, #fav-column {
+	height: 100%;
+}
+
+/* MY FEEDS */
+
+.thead-green tr th {
+	background-color: #4aa94c;
+	color: #fff;
+}
+
+
+/* MISCELANEA */
+
+.full-width {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.scrollable-dropdown {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.select2-wrapper {
+    width: 300px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+.red{
+	background-color: red;
+	width: 390px;
+	height: 290px;
+	margin: 1px;
+}
+
+.orange{
+	background-color: orange;
+}
+
+.yellow{
+	background-color: yellow;
+}
+
+.green{
+	background-color: green;
+}
+
+.blue{
+	background-color: blue;
+}
+
+.black{
+	background-color: black;
+}
+
+.gray{
+	background-color: gray;
+}

@@ -1,0 +1,82 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Feedtify | My Feeds{% endblock %}
+
+{% block nav %}
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="height: 70%">
+	<ul class="nav flex-column text-center">
+		<li class="nav-item">
+			<a class="nav-link" href="http://localhost:3000/dashboard">HOME</a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="http://localhost:3000/myfeeds">MY FEEDS</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="http://localhost:3000/mygroups">MY GROUPS</a>
+		</li>
+		{% block userCategories %}
+			{% include "../partials/categories.html" %}
+		{% endblock %}
+	</ul>
+	{% block footer %}
+		{% include "../includes/footer.html" %}
+	{% endblock %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row full-width">
+	<div class="col-md-3 full-width">
+		<h3>My feeds</h3>
+	</div>
+	<div class="col-md-9 full-width">
+		<!--<div class="pull-right">
+			<input class="form-control" type="text" placeholder="Filter input...">
+			<select class="custom-select">
+				<option selected>Filter by...</option>
+				<option value="1">Feed category</option>
+				<option value="2">Feed group</option>
+			</select>
+			<button class="btn btn-outline-success my-2 my-sm-0" type="button"><i class="fa fa-filter"></i></button>
+			<button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#addFeedModal"><i class="fa fa-plus-circle"></i></button>
+		</div>-->
+	</div>
+</div>
+
+<hr>
+
+<div class="row full-width">
+	<table class="table table-striped" id="myfeedstable">
+		<thead class="thead-green">
+			<tr>
+				<th>#</th>
+				<th>Feed Url</th>
+				<th>Feed Domain</th>
+				<th>Feed Category</th>
+				<th>Feed Group</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for feed in feeds %}
+				{% for category in categories %}
+					{% if feed.category == category.id %}
+					<tr>
+						<th>{{loop.index}}</th>
+						<td>{{ feed.url }}</td>
+						<td>{{ feed.domain }}</td>
+						<td>{{ category.name }}</td>
+						<td>{{ feed.group }}</td>
+						<td>
+							<div class="pull-right">
+								<!--<button class="btn btn-outline-success" type="button"><i class="fa fa-edit"></i></button>-->
+								<button class="btn btn-outline-success delFeedBtn" type="button"><i class="fa fa-trash-o"></i></button>
+							</div>
+						</td>
+					</tr>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

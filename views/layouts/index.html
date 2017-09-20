@@ -1,0 +1,133 @@
+{% extends "home_base.html" %}
+{% block title %}Feedtify | Home{% endblock %}
+
+{% block modals %}
+<!-- LOGIN MODAL -->
+<form action="/login" method="post" id="loginForm">
+	<div class="modal fade show" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<div class="form-group">
+				<label for="userLogin">Username</label>
+				<input type="text" class="form-control" id="userLogin" name="username" placeholder="Enter username">
+			</div>
+			<div class="form-group">
+				<label for="passwdLogin">Password</label>
+				<input type="password" class="form-control" id="passwdLogin" name="password" placeholder="Password">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-outline-success">Login</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</form>
+<!-- END LOGIN MODAL -->
+
+<!-- SIGNUP MODAL -->
+<form action="/signup" method="post" id="signUpForm">
+	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="alert alert-danger form-alert" style="display: none"></div>
+	      <div class="modal-body">
+	        <div class="form-group">
+				<label for="userSingUp">Username</label>
+				<input type="text" class="form-control" id="userSignUp" name="username" placeholder="Enter username" required="required">
+			</div>
+			<div class="form-group">
+				<label for="emailSignUp">Email</label>
+				<input type="text" class="form-control" id="emailSignUp" placeholder="Enter email" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+			</div>
+			<div class="form-group">
+				<label for="passwdSignUp">Password</label>
+				<input type="password" class="form-control" id="passwdSignUp" name="password" placeholder="Password" required="required">
+			</div>
+			<div class="form-group">
+				<label for="passwd2SignUp">Re-enter Password</label>
+				<input type="password" class="form-control" id="passwd2SignUp" placeholder="Password" required="required">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-outline-success" id="signUpBtn">Sign Up</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</form>
+<!-- END SIGNUP MODAL -->
+{% endblock %}
+
+{% block content %}
+<div class="row home-image full-width align-items-center text-center">
+	<div class="home-title full-width text-center">
+		<h1>Feedtify</h1>
+	</div>
+</div>
+<div class="row home-info align-items-center">
+	<div class="i-card">
+		<div class="row full-width text-center">
+			<div class="i-card-circle"><i class="fa fa-user fa-2x"></i></div>
+		</div>
+		<div class="row full-width i-card-title">
+			<h4>Lorem ipsum</h4>
+		</div>
+		<div class="row full-width i-card-description">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos nulla reiciendis veniam deserunt nesciunt a assumenda.</p>
+		</div>
+	</div>
+	<div class="i-card">
+		<div class="row full-width text-center">
+			<div class="i-card-circle"><i class="fa fa-users fa-2x"></i></div>
+		</div>
+		<div class="row full-width i-card-title">
+			<h4>Grupos</h4>
+		</div>
+		<div class="row full-width i-card-description">
+			<p>Crea o únete a grupos, ¡y comparte tus feeds con todo el mundo!</p>
+		</div>
+	</div>
+	<div class="i-card">
+		<div class="row full-width text-center">
+			<div class="i-card-circle"><i class="fa fa-list-ul fa-2x"></i></div>
+		</div>
+		<div class="row full-width i-card-title">
+			<h4>Categorías</h4>
+		</div>
+		<div class="row full-width i-card-description">
+			<p>Crea tus propias categorías y marca las noticias para ver mas tarde o como favoritas mediante "Drag and Drop"</p>
+		</div>
+	</div>
+</div>
+<br><br><br><br>
+<footer class="row home-footer full-width">
+	<div class="col-md-4 align-self-center">
+		<span>Copyright © 2017 - Feedtify</span>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4 align-self-center text-center">
+		<div class="footer-social full-width text-center">
+			<a href=""><i class="fa fa-twitter fa-fw"></i></a>
+			<a href=""><i class="fa fa-facebook-official fa-fw"></i></a>
+			<a href=""><i class="fa fa-google-plus-official fa-fw"></i></a>
+			<a href=""><i class="fa fa-instagram fa-fw"></i></a>
+		</div>
+	</div>
+</footer>
+{% endblock %}

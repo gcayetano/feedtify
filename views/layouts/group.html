@@ -1,0 +1,159 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Feedtify{% endblock %}
+
+{% block nav %}
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="height: 70%">
+	<ul class="nav flex-column text-center">
+		<li class="nav-item">
+			<a class="nav-link" href="/dashboard">HOME</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/myfeeds">MY FEEDS</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/mygroups">MY GROUPS</a>
+		</li>
+		{% block userCategories %}
+			{% include "../partials/categories.html" %}
+		{% endblock %}
+	</ul>
+	{% block footer %}
+		{% include "../includes/footer.html" %}
+	{% endblock %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row full-width">
+	<div class="col-md-1 g-logo full-width">
+		<img src="/images/avatar.png" alt="">
+	</div>
+	<div class="col-md-8 g-info full-width">
+		<div class="g-name"></div>
+		<div class="g-description"></div>
+		<div class="row full-width g-details">
+			<i class="fa fa-user fa-fw"></i><span class="g-card-owner"></span>
+			<i class="fa fa-users fa-fw"></i><span class="g-card-users"></span>
+		</div>
+	</div>
+	<div class="col-md-2 full-width align-self-center">
+		<button class="btn btn-outline-success my-2 my-sm-0 pull-right" type="button" id="joinBtn">JOIN</button>
+	</div>
+</div>
+
+<hr>
+
+<div class="row full-width" id="feedsRow">
+	{% block fCardHidden %}
+		{% include "../partials/f-card-template.html" %}
+	{% endblock %}
+	<!-- <div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div>
+	<div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div>
+	<div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div>
+	<div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div>
+	<div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div>
+	<div class="f-card">
+		<div class="row full-width f-card-header">
+			<div class="f-card-header-text">
+				<i class="fa fa-gamepad fa-fw"></i> Videojuegos
+			</div>
+		</div>
+		<div class="row full-width f-card-image text-center">
+			<img src="https://images.elotrolado.net/headers/upload/a/b/ab9182_shadowof-war_news.jpg" alt="">
+		</div>
+		<div class="row full-width f-card-content">
+			<div class="f-card-title">
+				<h6 data-toggle="tooltip" data-placement="top" title="La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín"><a href="#">La Tierra Media Sombras de Guerra revela su sistema de moneda premium y cofres de botín</a></h6>
+			</div>
+			<div class="f-card-description">
+				Los incentivos que incluyen las diferentes ediciones de <a href="https://www.elotrolado.net/wiki/La_Tierra_Media:_Sombras_de_Guerra" class="postlink">La Tierra Media Sombras de Guerra</a> anticipaban un sistema de microtransacciones para el juego, que finalmente <a href="https://community.wbgames.com/t5/Official-Announcements/Introducing-the-Market/m-p/1611183" class="postlink">ha sido revelado</a> por Monolith Productions. Para implementarlo se introducirá un mercado en el que los jugadores podrán comprar cofres de botín y guerra, así como bonificadores de experiencia para subir de nivel más rápido. Los Cofres de Botín contienen equipo (armas y armaduras) de una rareza variada además de la posibilidad de incluir bonificadores de experiencia, que se podrán adquirir por separado. Equipar y actualizar&hellip;<b> <a href="https://www.elotrolado.net/noticia_la-tierra-media-sombras-de-guerra-revela-su-sistema-de-moneda-premium-y-cofres-de-botin_33028">Leer noticia completa y comentarios &raquo;</a></b>
+			</div>
+		</div>
+	</div> -->
+</div>
+{% endblock %}
